@@ -20,8 +20,8 @@ spring:
         order_inserts: true
         order_updates: true
     open-in-view: true
-    liquibase:
-      change-log: classpath:db/changelog/db.changelog-root.xml
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-root.xml
 
 springdoc:
   swagger-ui:
