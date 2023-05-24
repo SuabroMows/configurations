@@ -1,8 +1,8 @@
 server:
   port: 9999
   session:
-  lifetime:
-  seconds: 900
+    lifetime:
+      seconds: 900
 
 spring:
   datasource:
