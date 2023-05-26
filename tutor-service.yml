@@ -9,15 +9,19 @@ eureka:
         http://172.31.0.1:8070/eureka/
 
 resilience4j.circuitbreaker:
-  instances:
-    licenseService:
+  configs:
+    default:
       registerHealthIndicator: true
-      ringBufferSizeInClosedState: 5
-      ringBufferSizeInHalfOpenState: 3
-      waitDurationInOpenState: 10s
+      slidingWindowSize: 10
+      minimumNumberOfCalls: 5
+      permittedNumberOfCallsInHalfOpenState: 3
+      automaticTransitionFromOpenToHalfOpenEnabled: true
+      waitDurationInOpenState: 5s
       failureRateThreshold: 50
+      eventConsumerBufferSize: 10
       recordExceptions:
         - org.springframework.web.client.HttpServerErrorException
-        - java.io.IOException
         - java.util.concurrent.TimeoutException
-        - org.springframework.web.client.ResourceAccessException
+        - java.io.IOException
+      ignoreExceptions:
+        - io.github.robwin.exception.BusinessException
